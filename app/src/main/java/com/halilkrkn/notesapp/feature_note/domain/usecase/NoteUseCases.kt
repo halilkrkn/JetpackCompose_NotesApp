@@ -1,0 +1,6 @@
+package com.halilkrkn.notesapp.feature_note.domain.usecase
+
+data class NoteUseCases(
+    val getNotesUseCase: GetNotesUseCase,
+    val deleteNoteUseCase: DeleteNoteUseCase
+)
