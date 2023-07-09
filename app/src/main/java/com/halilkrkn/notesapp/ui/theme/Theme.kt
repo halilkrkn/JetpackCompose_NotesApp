@@ -70,7 +70,7 @@ fun JetpackCompose_NotesAppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-//        shapes = Shapes(),
+        shapes = Shapes,
         typography = Typography,
         content = content
     )
