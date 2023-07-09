@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.halilkrkn.notesapp.feature_note.domain.model.InvalidNoteException
 import com.halilkrkn.notesapp.feature_note.domain.model.Note
 import com.halilkrkn.notesapp.feature_note.domain.usecase.NoteUseCases
-import com.halilkrkn.notesapp.feature_note.presentation.add_edit_note.components.AddEditNoteEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
