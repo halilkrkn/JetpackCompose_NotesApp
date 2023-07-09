@@ -18,7 +18,7 @@ import com.halilkrkn.notesapp.feature_note.domain.util.NoteOrder
 fun DefaultRadioButton(
     text: String,
     selected: Boolean,
-    onSelect: (NoteOrder) -> Unit,
+    onSelect: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -27,7 +27,7 @@ fun DefaultRadioButton(
     ) {
         RadioButton(
             selected = selected,
-            onClick = { onSelect },
+            onClick = onSelect ,
             colors = RadioButtonDefaults.colors(
                 selectedColor = MaterialTheme.colorScheme.primary,
                 unselectedColor = MaterialTheme.colorScheme.onBackground
