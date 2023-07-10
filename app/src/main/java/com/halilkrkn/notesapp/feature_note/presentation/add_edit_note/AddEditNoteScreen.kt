@@ -84,6 +84,8 @@ fun AddEditNoteScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
+                modifier = Modifier
+                    .clip(CircleShape),
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
@@ -162,7 +164,7 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = contentState.isHintVisible,
                 singleLine = false,
-                textStyle = MaterialTheme.typography.bodyMedium,
+                textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.fillMaxHeight()
             )
         }

@@ -17,10 +17,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.DismissDirection
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -30,18 +34,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.halilkrkn.notesapp.feature_note.domain.model.Note
+import com.halilkrkn.notesapp.feature_note.presentation.notes.components.DismissBackground
 import com.halilkrkn.notesapp.feature_note.presentation.notes.components.NoteItem
 import com.halilkrkn.notesapp.feature_note.presentation.notes.components.OrderSection
 import com.halilkrkn.notesapp.feature_note.presentation.util.Screen
+import com.halilkrkn.notesapp.ui.theme.DarkGreen
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -59,10 +69,12 @@ fun NotesScreen(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
+                modifier = Modifier
+                    .clip(CircleShape),
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                contentColor = MaterialTheme.colorScheme.primary
+                containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {
                 Icon(imageVector = Icons.Default.Create, contentDescription = "Add note")
             }
@@ -93,6 +105,7 @@ fun NotesScreen(
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(16.dp))
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
                 enter = fadeIn() + slideInVertically(),
@@ -112,7 +125,12 @@ fun NotesScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(state.notes) { note ->
+                items(
+                    state.notes,
+                    key = {item: Note ->
+                        item.id!!
+                    }
+                ) { note ->
                     NoteItem(
                         note = note,
                         modifier = Modifier
