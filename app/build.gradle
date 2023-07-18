@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.halilkrkn.DaggerHiltTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -116,6 +116,7 @@ dependencies {
     // Instrumentation tests
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.37'
     kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.37'
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.28.3"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation "com.google.truth:truth:1.1.3"
