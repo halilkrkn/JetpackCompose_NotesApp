@@ -27,10 +27,12 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.halilkrkn.notesapp.core.util.TestTags
 import com.halilkrkn.notesapp.feature_note.domain.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,6 +66,7 @@ fun NoteItem(
         dismissContent = {
             Box(
                 modifier = modifier
+                    .testTag(TestTags.NOTE_ITEM)
             ) {
 
                 // Not için oluşturulan şekil(Dikdörtgen) ve kesme köşesi ile not'un şeklini oluşturuyoruz.

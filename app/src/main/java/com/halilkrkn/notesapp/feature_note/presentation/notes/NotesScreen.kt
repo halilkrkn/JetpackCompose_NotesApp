@@ -43,9 +43,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.halilkrkn.notesapp.core.util.TestTags
 import com.halilkrkn.notesapp.feature_note.domain.model.Note
 import com.halilkrkn.notesapp.feature_note.presentation.notes.components.DismissBackground
 import com.halilkrkn.notesapp.feature_note.presentation.notes.components.NoteItem
@@ -76,7 +78,10 @@ fun NotesScreen(
                 },
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {
-                Icon(imageVector = Icons.Default.Create, contentDescription = "Add note")
+                Icon(
+                    imageVector = Icons.Default.Create,
+                    contentDescription = "Add"
+                )
             }
         }
     ) {
@@ -114,7 +119,8 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 16.dp)
+                        .testTag(TestTags.ORDER_SECTION),
                     noteOrder = state.noteOrder,
                     onOrderChange = { noteOrder ->
                         viewModel.onEvent(NotesEvent.Order(noteOrder))
