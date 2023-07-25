@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -39,6 +38,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.halilkrkn.notesapp.core.util.TestTags
 import com.halilkrkn.notesapp.feature_note.domain.model.Note
 import com.halilkrkn.notesapp.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import kotlinx.coroutines.flow.collectLatest
@@ -91,7 +91,7 @@ fun AddEditNoteScreen(
                 },
                 contentColor = MaterialTheme.colorScheme.primary
             ) {
-                Icon(imageVector = Icons.Default.Done, contentDescription = "Save Not")
+                Icon(imageVector = Icons.Default.Done, contentDescription = "Save")
             }
         }
     ) {
@@ -149,7 +149,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = titleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.headlineLarge
+                textStyle = MaterialTheme.typography.headlineLarge,
+                testTag = TestTags.TITLE_TEXT_FIELD
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -165,7 +166,8 @@ fun AddEditNoteScreen(
                 isHintVisible = contentState.isHintVisible,
                 singleLine = false,
                 textStyle = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxHeight(),
+                testTag = TestTags.CONTENT_TEXT_FIELD
             )
         }
     }
